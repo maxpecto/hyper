@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avtomobillər - Hyper Drive</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/hagrid" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/kelson-sans" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-menu nav-menu-left">
+                <a href="index.html" class="nav-link">Ana Səhifə</a>
+                <a href="events.html" class="nav-link">Tədbirlər</a>
+                <a href="cars.html" class="nav-link active">Avtomobillər</a>
+            </div>
+            <div class="nav-logo">
+                <span class="logo-text">HYPER DRIVE</span>
+            </div>
+            <div class="nav-menu nav-menu-right">
+                <a href="voting.html" class="nav-link">Səsvermə</a>
+                <a href="sponsors.html" class="nav-link">Sponsorlar</a>
+                <a href="register.html" class="nav-link cta-link">Qoşul</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">
+                <span class="glitch" data-text="AVTOMOBİLLƏR">AVTOMOBİLLƏR</span>
+            </h1>
+            <p class="page-subtitle">Cəmiyyətimizdə cyberpunk avtomobil kolleksiyası</p>
+        </div>
+    </section>
+
+    <!-- Cars Filter -->
+    <section class="cars-filter">
+        <div class="container">
+            <div class="filter-controls">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Hamısı</button>
+                    <button class="filter-btn" data-filter="bmw">BMW</button>
+                    <button class="filter-btn" data-filter="mercedes">Mercedes</button>
+                    <button class="filter-btn" data-filter="audi">Audi</button>
+                    <button class="filter-btn" data-filter="japanese">Japon</button>
+                    <button class="filter-btn" data-filter="other">Diğer</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="carSearch" placeholder="Araç ara...">
+                    <button class="search-btn">🔍</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cars Gallery -->
+    <section class="cars-gallery">
+        <div class="container">
+            <div class="cars-grid">
+                <!-- Car 1 -->
+                <div class="car-card" data-category="bmw">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&h=300&fit=crop" alt="BMW M3">
+                        <div class="car-overlay">
+                            <div class="car-stats">
+                                <div class="stat">⚡ 450 HP</div>
+                                <div class="stat">🏎️ 0-100: 4.2s</div>
+                            </div>
+                            <button class="view-details">Detayları Gör</button>
+                        </div>
+                    </div>
+                    <div class="car-info">
+                        <div class="car-header">
+                            <h3 class="car-title">BMW M3 Competition</h3>
+                            <div class="car-rating">
+                                <span class="stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-count">(24)</span>
+                            </div>
+                        </div>
+                        <div class="car-owner">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Owner">
+                            <span>@CyberRacer_TR</span>
+                        </div>
+                        <div class="car-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Yıl</span>
+                                <span class="spec-value">2023</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Renk</span>
+                                <span class="spec-value">Neon Mavi</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Modifikasyon</span>
+                                <span class="spec-value">Turbo+</span>
+                            </div>
+                        </div>
+                        <div class="car-tags">
+                            <span class="tag">Drift</span>
+                            <span class="tag">Track</span>
+                            <span class="tag">Show</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car 2 -->
+                <div class="car-card" data-category="japanese">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1606152421802-db97b6c80a19?w=500&h=300&fit=crop" alt="Nissan GTR">
+                        <div class="car-overlay">
+                            <div class="car-stats">
+                                <div class="stat">⚡ 600 HP</div>
+                                <div class="stat">🏎️ 0-100: 3.5s</div>
+                            </div>
+                            <button class="view-details">Detayları Gör</button>
+                        </div>
+                    </div>
+                    <div class="car-info">
+                        <div class="car-header">
+                            <h3 class="car-title">Nissan GT-R Nismo</h3>
+                            <div class="car-rating">
+                                <span class="stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-count">(31)</span>
+                            </div>
+                        </div>
+                        <div class="car-owner">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Owner">
+                            <span>@NeonSpeed</span>
+                        </div>
+                        <div class="car-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Yıl</span>
+                                <span class="spec-value">2022</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Renk</span>
+                                <span class="spec-value">Gümüş</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Modifikasyon</span>
+                                <span class="spec-value">Full Tune</span>
+                            </div>
+                        </div>
+                        <div class="car-tags">
+                            <span class="tag">Racing</span>
+                            <span class="tag">Tuned</span>
+                            <span class="tag">AWD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car 3 -->
+                <div class="car-card" data-category="mercedes">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&h=300&fit=crop" alt="Mercedes AMG">
+                        <div class="car-overlay">
+                            <div class="car-stats">
+                                <div class="stat">⚡ 630 HP</div>
+                                <div class="stat">🏎️ 0-100: 3.7s</div>
+                            </div>
+                            <button class="view-details">Detayları Gör</button>
+                        </div>
+                    </div>
+                    <div class="car-info">
+                        <div class="car-header">
+                            <h3 class="car-title">Mercedes AMG GT63 S</h3>
+                            <div class="car-rating">
+                                <span class="stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-count">(18)</span>
+                            </div>
+                        </div>
+                        <div class="car-owner">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=40&h=40&fit=crop&crop=face" alt="Owner">
+                            <span>@MercedesKing</span>
+                        </div>
+                        <div class="car-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Yıl</span>
+                                <span class="spec-value">2024</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Renk</span>
+                                <span class="spec-value">Mat Siyah</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Modifikasyon</span>
+                                <span class="spec-value">Aero Kit</span>
+                            </div>
+                        </div>
+                        <div class="car-tags">
+                            <span class="tag">Luxury</span>
+                            <span class="tag">Performance</span>
+                            <span class="tag">4-Door</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car 4 -->
+                <div class="car-card" data-category="japanese">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1544829099-b9a0c5303bbb?w=500&h=300&fit=crop" alt="Toyota Supra">
+                        <div class="car-overlay">
+                            <div class="car-stats">
+                                <div class="stat">⚡ 500 HP</div>
+                                <div class="stat">🏎️ 0-100: 4.1s</div>
+                            </div>
+                            <button class="view-details">Detayları Gör</button>
+                        </div>
+                    </div>
+                    <div class="car-info">
+                        <div class="car-header">
+                            <h3 class="car-title">Toyota GR Supra</h3>
+                            <div class="car-rating">
+                                <span class="stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-count">(27)</span>
+                            </div>
+                        </div>
+                        <div class="car-owner">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&h=40&fit=crop&crop=face" alt="Owner">
+                            <span>@SupraDrift</span>
+                        </div>
+                        <div class="car-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Yıl</span>
+                                <span class="spec-value">2023</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Renk</span>
+                                <span class="spec-value">Kırmızı</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Modifikasyon</span>
+                                <span class="spec-value">Drift Kit</span>
+                            </div>
+                        </div>
+                        <div class="car-tags">
+                            <span class="tag">Drift</span>
+                            <span class="tag">JDM</span>
+                            <span class="tag">Iconic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car 5 -->
+                <div class="car-card" data-category="audi">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=500&h=300&fit=crop" alt="Audi RS6">
+                        <div class="car-overlay">
+                            <div class="car-stats">
+                                <div class="stat">⚡ 600 HP</div>
+                                <div class="stat">🏎️ 0-100: 3.6s</div>
+                            </div>
+                            <button class="view-details">Detayları Gör</button>
+                        </div>
+                    </div>
+                    <div class="car-info">
+                        <div class="car-header">
+                            <h3 class="car-title">Audi RS6 Avant</h3>
+                            <div class="car-rating">
+                                <span class="stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-count">(22)</span>
+                            </div>
+                        </div>
+                        <div class="car-owner">
+                            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=40&h=40&fit=crop&crop=face" alt="Owner">
+                            <span>@AudiFreak</span>
+                        </div>
+                        <div class="car-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Yıl</span>
+                                <span class="spec-value">2023</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Renk</span>
+                                <span class="spec-value">Yeşil</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Modifikasyon</span>
+                                <span class="spec-value">Stage 2</span>
+                            </div>
+                        </div>
+                        <div class="car-tags">
+                            <span class="tag">Wagon</span>
+                            <span class="tag">Daily</span>
+                            <span class="tag">Fast</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car 6 -->
+                <div class="car-card" data-category="other">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1566473965997-3de9c817e938?w=500&h=300&fit=crop" alt="Porsche 911">
+                        <div class="car-overlay">
+                            <div class="car-stats">
+                                <div class="stat">⚡ 650 HP</div>
+                                <div class="stat">🏎️ 0-100: 3.2s</div>
+                            </div>
+                            <button class="view-details">Detayları Gör</button>
+                        </div>
+                    </div>
+                    <div class="car-info">
+                        <div class="car-header">
+                            <h3 class="car-title">Porsche 911 Turbo S</h3>
+                            <div class="car-rating">
+                                <span class="stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-count">(35)</span>
+                            </div>
+                        </div>
+                        <div class="car-owner">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=40&h=40&fit=crop&crop=face" alt="Owner">
+                            <span>@PorscheDriver</span>
+                        </div>
+                        <div class="car-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Yıl</span>
+                                <span class="spec-value">2024</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Renk</span>
+                                <span class="spec-value">Beyaz</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Modifikasyon</span>
+                                <span class="spec-value">Stock+</span>
+                            </div>
+                        </div>
+                        <div class="car-tags">
+                            <span class="tag">Track</span>
+                            <span class="tag">Turbo</span>
+                            <span class="tag">Iconic</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Your Car CTA -->
+    <section class="add-car-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Araçını Sergile</h2>
+                <p>Cyberpunk koleksiyonuna araçını ekle ve topluluğun beğenisini kazan!</p>
+                <a href="register.html" class="btn-primary">Araç Ekle</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span>HYPER DRIVE</span>
+                    </div>
+                    <p>Gelecek burada. Arabanla tanışma zamanı.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Hızlı Erişim</h4>
+                        <a href="events.html">Etkinlikler</a>
+                        <a href="cars.html">Otomobiller</a>
+                        <a href="voting.html">Oylama</a>
+                        <a href="register.html">Üye Ol</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>İletişim</h4>
+                        <a href="#">info@hyperdrive.com</a>
+                        <a href="#">+90 (212) 555-0123</a>
+                        <a href="#">İstanbul, Türkiye</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Sosyal</h4>
+                        <a href="#">Instagram</a>
+                        <a href="#">YouTube</a>
+                        <a href="#">Discord</a>
+                        <a href="#">TikTok</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hyper Drive. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="cars.js"></script>
+</body>
+</html> 

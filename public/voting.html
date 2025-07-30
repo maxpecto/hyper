@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Səsvermə - Hyper Drive</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/hagrid" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/kelson-sans" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-menu nav-menu-left">
+                <a href="index.html" class="nav-link">Ana Səhifə</a>
+                <a href="events.html" class="nav-link">Tədbirlər</a>
+                <a href="cars.html" class="nav-link">Avtomobillər</a>
+            </div>
+            <div class="nav-logo">
+                <span class="logo-text">HYPER DRIVE</span>
+            </div>
+            <div class="nav-menu nav-menu-right">
+                <a href="voting.html" class="nav-link active">Səsvermə</a>
+                <a href="sponsors.html" class="nav-link">Sponsorlar</a>
+                <a href="register.html" class="nav-link cta-link">Qoşul</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">
+                <span class="glitch" data-text="SƏSVERMƏ">SƏSVERMƏ</span>
+            </h1>
+            <p class="page-subtitle">Ayın ən yaxşı cyberpunk avtomobilləri üçün səs ver</p>
+        </div>
+    </section>
+
+    <!-- Voting Stats -->
+    <section class="voting-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card-voting">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-info">
+                        <h3>1,247</h3>
+                        <p>Ümumi Səs</p>
+                    </div>
+                </div>
+                <div class="stat-card-voting">
+                    <div class="stat-icon">🚗</div>
+                    <div class="stat-info">
+                        <h3>24</h3>
+                        <p>Yarışan Araç</p>
+                    </div>
+                </div>
+                <div class="stat-card-voting">
+                    <div class="stat-icon">⏰</div>
+                    <div class="stat-info">
+                        <h3>5</h3>
+                        <p>Kalan Gün</p>
+                    </div>
+                </div>
+                <div class="stat-card-voting">
+                    <div class="stat-icon">🎁</div>
+                    <div class="stat-info">
+                        <h3>₺5,000</h3>
+                        <p>Ödül Havuzu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Competition -->
+    <section class="current-competition">
+        <div class="container">
+            <div class="competition-header">
+                <h2 class="section-title">Mart 2024 - Cyberpunk Car Contest</h2>
+                <div class="competition-timer">
+                    <div class="timer-item">
+                        <span class="timer-number" id="days">05</span>
+                        <span class="timer-label">Gün</span>
+                    </div>
+                    <div class="timer-item">
+                        <span class="timer-number" id="hours">14</span>
+                        <span class="timer-label">Saat</span>
+                    </div>
+                    <div class="timer-item">
+                        <span class="timer-number" id="minutes">32</span>
+                        <span class="timer-label">Dakika</span>
+                    </div>
+                    <div class="timer-item">
+                        <span class="timer-number" id="seconds">18</span>
+                        <span class="timer-label">Saniye</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voting Cars -->
+    <section class="voting-cars">
+        <div class="container">
+            <div class="voting-grid">
+                <!-- Car 1 - Leader -->
+                <div class="voting-card leader" data-car-id="1">
+                    <div class="voting-position">
+                        <span class="position-number">1</span>
+                        <span class="crown">👑</span>
+                    </div>
+                    <div class="car-image-voting">
+                        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&h=400&fit=crop" alt="BMW M3">
+                        <div class="neon-glow"></div>
+                    </div>
+                    <div class="voting-info">
+                        <h3 class="car-title">BMW M3 Competition</h3>
+                        <div class="car-owner-voting">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Owner">
+                            <span>@CyberRacer_TR</span>
+                        </div>
+                        <div class="vote-count">
+                            <span class="votes">287</span>
+                            <span class="vote-label">oy</span>
+                        </div>
+                        <div class="vote-percentage">
+                            <div class="percentage-bar">
+                                <div class="percentage-fill" style="width: 23%"></div>
+                            </div>
+                            <span class="percentage-text">23%</span>
+                        </div>
+                        <button class="vote-btn" data-car-id="1">
+                            <span class="vote-icon">❤️</span>
+                            <span class="vote-text">Oy Ver</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Car 2 -->
+                <div class="voting-card" data-car-id="2">
+                    <div class="voting-position">
+                        <span class="position-number">2</span>
+                    </div>
+                    <div class="car-image-voting">
+                        <img src="https://images.unsplash.com/photo-1606152421802-db97b6c80a19?w=600&h=400&fit=crop" alt="Nissan GTR">
+                        <div class="neon-glow"></div>
+                    </div>
+                    <div class="voting-info">
+                        <h3 class="car-title">Nissan GT-R Nismo</h3>
+                        <div class="car-owner-voting">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Owner">
+                            <span>@NeonSpeed</span>
+                        </div>
+                        <div class="vote-count">
+                            <span class="votes">245</span>
+                            <span class="vote-label">oy</span>
+                        </div>
+                        <div class="vote-percentage">
+                            <div class="percentage-bar">
+                                <div class="percentage-fill" style="width: 19.6%"></div>
+                            </div>
+                            <span class="percentage-text">19.6%</span>
+                        </div>
+                        <button class="vote-btn" data-car-id="2">
+                            <span class="vote-icon">❤️</span>
+                            <span class="vote-text">Oy Ver</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Car 3 -->
+                <div class="voting-card" data-car-id="3">
+                    <div class="voting-position">
+                        <span class="position-number">3</span>
+                    </div>
+                    <div class="car-image-voting">
+                        <img src="https://images.unsplash.com/photo-1566473965997-3de9c817e938?w=600&h=400&fit=crop" alt="Porsche 911">
+                        <div class="neon-glow"></div>
+                    </div>
+                    <div class="voting-info">
+                        <h3 class="car-title">Porsche 911 Turbo S</h3>
+                        <div class="car-owner-voting">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=40&h=40&fit=crop&crop=face" alt="Owner">
+                            <span>@PorscheDriver</span>
+                        </div>
+                        <div class="vote-count">
+                            <span class="votes">198</span>
+                            <span class="vote-label">oy</span>
+                        </div>
+                        <div class="vote-percentage">
+                            <div class="percentage-bar">
+                                <div class="percentage-fill" style="width: 15.9%"></div>
+                            </div>
+                            <span class="percentage-text">15.9%</span>
+                        </div>
+                        <button class="vote-btn" data-car-id="3">
+                            <span class="vote-icon">❤️</span>
+                            <span class="vote-text">Oy Ver</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Car 4 -->
+                <div class="voting-card" data-car-id="4">
+                    <div class="voting-position">
+                        <span class="position-number">4</span>
+                    </div>
+                    <div class="car-image-voting">
+                        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&h=400&fit=crop" alt="Mercedes AMG">
+                        <div class="neon-glow"></div>
+                    </div>
+                    <div class="voting-info">
+                        <h3 class="car-title">Mercedes AMG GT63 S</h3>
+                        <div class="car-owner-voting">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=40&h=40&fit=crop&crop=face" alt="Owner">
+                            <span>@MercedesKing</span>
+                        </div>
+                        <div class="vote-count">
+                            <span class="votes">156</span>
+                            <span class="vote-label">oy</span>
+                        </div>
+                        <div class="vote-percentage">
+                            <div class="percentage-bar">
+                                <div class="percentage-fill" style="width: 12.5%"></div>
+                            </div>
+                            <span class="percentage-text">12.5%</span>
+                        </div>
+                        <button class="vote-btn" data-car-id="4">
+                            <span class="vote-icon">❤️</span>
+                            <span class="vote-text">Oy Ver</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Car 5 -->
+                <div class="voting-card" data-car-id="5">
+                    <div class="voting-position">
+                        <span class="position-number">5</span>
+                    </div>
+                    <div class="car-image-voting">
+                        <img src="https://images.unsplash.com/photo-1544829099-b9a0c5303bbb?w=600&h=400&fit=crop" alt="Toyota Supra">
+                        <div class="neon-glow"></div>
+                    </div>
+                    <div class="voting-info">
+                        <h3 class="car-title">Toyota GR Supra</h3>
+                        <div class="car-owner-voting">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&h=40&fit=crop&crop=face" alt="Owner">
+                            <span>@SupraDrift</span>
+                        </div>
+                        <div class="vote-count">
+                            <span class="votes">142</span>
+                            <span class="vote-label">oy</span>
+                        </div>
+                        <div class="vote-percentage">
+                            <div class="percentage-bar">
+                                <div class="percentage-fill" style="width: 11.4%"></div>
+                            </div>
+                            <span class="percentage-text">11.4%</span>
+                        </div>
+                        <button class="vote-btn" data-car-id="5">
+                            <span class="vote-icon">❤️</span>
+                            <span class="vote-text">Oy Ver</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Car 6 -->
+                <div class="voting-card" data-car-id="6">
+                    <div class="voting-position">
+                        <span class="position-number">6</span>
+                    </div>
+                    <div class="car-image-voting">
+                        <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600&h=400&fit=crop" alt="Audi RS6">
+                        <div class="neon-glow"></div>
+                    </div>
+                    <div class="voting-info">
+                        <h3 class="car-title">Audi RS6 Avant</h3>
+                        <div class="car-owner-voting">
+                            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=40&h=40&fit=crop&crop=face" alt="Owner">
+                            <span>@AudiFreak</span>
+                        </div>
+                        <div class="vote-count">
+                            <span class="votes">119</span>
+                            <span class="vote-label">oy</span>
+                        </div>
+                        <div class="vote-percentage">
+                            <div class="percentage-bar">
+                                <div class="percentage-fill" style="width: 9.5%"></div>
+                            </div>
+                            <span class="percentage-text">9.5%</span>
+                        </div>
+                        <button class="vote-btn" data-car-id="6">
+                            <span class="vote-icon">❤️</span>
+                            <span class="vote-text">Oy Ver</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voting Rules -->
+    <section class="voting-rules">
+        <div class="container">
+            <div class="rules-container">
+                <h2 class="section-title">Oylama Kuralları</h2>
+                <div class="rules-content">
+                    <div class="rule-item">
+                        <div class="rule-icon">🔐</div>
+                        <div class="rule-text">
+                            <h3>Sadece Üyeler Oy Verebilir</h3>
+                            <p>Oylama yapabilmek için Hyper Drive topluluğuna üye olmanız gerekir.</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-icon">📅</div>
+                        <div class="rule-text">
+                            <h3>Aylık Oylama</h3>
+                            <p>Her ay yeni bir oylama düzenlenir ve kazananlar ödüllendirilir.</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-icon">⚡</div>
+                        <div class="rule-text">
+                            <h3>Tek Oy Hakkı</h3>
+                            <p>Her üye sadece bir araca oy verebilir, oy değiştirmek mümkündür.</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-icon">🏆</div>
+                        <div class="rule-text">
+                            <h3>Ödüller</h3>
+                            <p>İlk 3 sıra para ödülü kazanır, diğer katılımcılar özel rozet alır.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Previous Winners -->
+    <section class="previous-winners">
+        <div class="container">
+            <h2 class="section-title">Geçmiş Kazananlar</h2>
+            <div class="winners-grid">
+                <div class="winner-card">
+                    <div class="winner-month">Şubat 2024</div>
+                    <div class="winner-image">
+                        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=300&h=200&fit=crop" alt="Winner Car">
+                        <div class="winner-badge">🥇</div>
+                    </div>
+                    <div class="winner-info">
+                        <h3>Lamborghini Huracán</h3>
+                        <p>@LamboTurk</p>
+                        <div class="winner-votes">342 oy</div>
+                    </div>
+                </div>
+                <div class="winner-card">
+                    <div class="winner-month">Ocak 2024</div>
+                    <div class="winner-image">
+                        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=300&h=200&fit=crop" alt="Winner Car">
+                        <div class="winner-badge">🥇</div>
+                    </div>
+                    <div class="winner-info">
+                        <h3>Ferrari 488 GTB</h3>
+                        <p>@FerrariLover</p>
+                        <div class="winner-votes">298 oy</div>
+                    </div>
+                </div>
+                <div class="winner-card">
+                    <div class="winner-month">Aralık 2023</div>
+                    <div class="winner-image">
+                        <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=300&h=200&fit=crop" alt="Winner Car">
+                        <div class="winner-badge">🥇</div>
+                    </div>
+                    <div class="winner-info">
+                        <h3>McLaren 720S</h3>
+                        <p>@McLarenFan</p>
+                        <div class="winner-votes">267 oy</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span>HYPER DRIVE</span>
+                    </div>
+                    <p>Gelecek burada. Arabanla tanışma zamanı.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Hızlı Erişim</h4>
+                        <a href="events.html">Etkinlikler</a>
+                        <a href="cars.html">Otomobiller</a>
+                        <a href="voting.html">Oylama</a>
+                        <a href="register.html">Üye Ol</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>İletişim</h4>
+                        <a href="#">info@hyperdrive.com</a>
+                        <a href="#">+90 (212) 555-0123</a>
+                        <a href="#">İstanbul, Türkiye</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Sosyal</h4>
+                        <a href="#">Instagram</a>
+                        <a href="#">YouTube</a>
+                        <a href="#">Discord</a>
+                        <a href="#">TikTok</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hyper Drive. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="voting.js"></script>
+</body>
+</html> 
