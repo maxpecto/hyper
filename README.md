@@ -1,61 +1,330 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Proje Hakkında
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Bu sistem aslında bir araba etkinliği için tasarlandı. Katılımcılar arabalarını kaydediyor, admin onaylıyor ve sonra herkes oy veriyor.
 
-## About Laravel
+## Ne Yapıyor?
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Araba Kayıt Sistemi
+- Kullanıcılar arabalarının 6 farklı fotoğrafını yüklüyor (ön, arka, sol, sağ, iç mekan, motor)
+- Araba bilgileri, deneyim yılı, ilgi alanları gibi detayları giriyorlar
+- Form hem tarayıcıda hem sunucuda kontrol ediliyor
+- Azerbaycan dilinde
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Oylama Sistemi
+- Her kullanıcı sadece bir kez oy verebiliyor (benzersiz kod sistemi)
+- Admin onayladıktan sonra arabalar oylamaya katılabiliyor
+- Canlı istatistikler görülebiliyor
+- Cookie sistemi ile kullanıcı deneyimi iyileştirildi
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Admin Paneli
+- Filament kullanarak güzel bir admin paneli
+- Kayıtları onaylama/reddetme
+- WhatsApp entegrasyonu (otomatik mesajlar)
+- Oylama kodları oluşturma
+- Detaylı raporlar
 
-## Learning Laravel
+## Kullandığımız Teknolojiler
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Backend
+- **Laravel 12.21.0** - PHP framework'ü
+- **SQLite** - Veritabanı (geliştirme için pratik)
+- **Filament 3.3.34** - Admin panel
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Frontend
+- **HTML5/CSS3** - Responsive tasarım
+- **JavaScript (ES6+)** - Dinamik işlemler
+- **AJAX** - Sayfa yenilemeden veri alışverişi
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Diğer
+- **Blade Templating** - Laravel'in template sistemi
+- **Eloquent ORM** - Veritabanı işlemleri
+- **Composer** - PHP paket yöneticisi
 
-## Laravel Sponsors
+## Kurulum
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Gereksinimler
+- PHP 8.1 veya üzeri
+- Composer
+- Node.js (opsiyonel)
 
-### Premium Partners
+### Hızlı Kurulum
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+1. **Projeyi indirin**
+```bash
+git clone https://github.com/maxpecto/hyper.git
+cd hyper
+```
 
-## Contributing
+2. **Bağımlılıkları yükleyin**
+```bash
+composer install
+npm install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. **Ortam ayarları**
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-## Code of Conduct
+4. **Veritabanını hazırlayın**
+```bash
+php artisan migrate
+php artisan db:seed
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5. **Storage linkini oluşturun**
+```bash
+php artisan storage:link
+```
 
-## Security Vulnerabilities
+6. **Sunucuyu başlatın**
+```bash
+php artisan serve
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Not**: Eğer otomatik kurulum scripti kullanmak isterseniz:
+```bash
+chmod +x setup.sh
+./setup.sh
+```
 
-## License
+## Nasıl Kullanılır?
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Kullanıcı Tarafı
+
+#### Araba Kaydı
+1. `/register` sayfasına gidin
+2. Formu doldurun ve 6 fotoğraf yükleyin
+3. Gönderin ve admin onayını bekleyin
+
+#### Oylama
+1. `/voting` sayfasına gidin
+2. Size verilen kodu girin
+3. Beğendiğiniz arabaya oy verin
+
+### Admin Tarafı
+
+#### Admin Paneline Giriş
+- `/admin` adresine gidin
+- E-posta: `admin@example.com`
+- Şifre: `password`
+
+#### Kayıtları Yönetin
+- **Registrations** bölümünde kayıtları görün
+- Onaylayın veya reddedin
+- WhatsApp bildirimleri otomatik gönderilir
+
+#### Oylama Kodları Oluşturun
+- **WhatsApp Settings** bölümünde
+- "Generate Codes" butonuna tıklayın
+- İstediğiniz sayıda kod oluşturun
+
+## API'ler
+
+### Oylama API'leri
+
+#### Kod Doğrulama
+```http
+POST /voting/verify-code
+Content-Type: application/json
+
+{
+    "code": "ABC123"
+}
+```
+
+**Başarılı yanıt:**
+```json
+{
+    "success": true,
+    "message": "Kod təsdiqləndi",
+    "code_id": 1
+}
+```
+
+#### Oy Verme
+```http
+POST /voting/vote
+Content-Type: application/json
+
+{
+    "code_id": 1,
+    "registration_id": 5
+}
+```
+
+**Başarılı yanıt:**
+```json
+{
+    "success": true,
+    "message": "Oy uğurla qeydə alındı",
+    "stats": {
+        "total_votes": 150,
+        "used_codes": 45
+    }
+}
+```
+
+#### İstatistikler
+```http
+GET /voting/stats
+```
+
+**Yanıt:**
+```json
+{
+    "total_votes": 150,
+    "total_cars": 25,
+    "used_codes": 45,
+    "cars": [
+        {
+            "id": 1,
+            "votes": 15,
+            "percentage": 10.0
+        }
+    ]
+}
+```
+
+## Veritabanı Yapısı
+
+### Tablolar
+
+#### `registrations` - Kayıtlar
+- `id` (Primary Key)
+- `full_name` (Ad soyad)
+- `phone` (Telefon)
+- `email` (E-posta)
+- `car_brand` (Araba markası)
+- `car_model` (Araba modeli)
+- `car_year` (Yıl)
+- `engine_size` (Motor hacmi)
+- `modifications` (Modifikasyonlar)
+- `experience_years` (Deneyim yılı)
+- `interests` (İlgi alanları - JSON)
+- `photo_front`, `photo_back`, `photo_left`, `photo_right`, `photo_interior`, `photo_engine` (Fotoğraflar)
+- `status` (Durum: pending, approved, rejected)
+- `admin_notes` (Admin notları)
+- `newsletter_subscription` (Bülten aboneliği)
+- `created_at`, `updated_at` (Zaman damgaları)
+
+#### `voting_codes` - Oylama Kodları
+- `id` (Primary Key)
+- `code` (Kod - benzersiz)
+- `is_used` (Kullanıldı mı?)
+- `used_at` (Kullanım zamanı)
+- `used_ip` (Kullanılan IP)
+- `created_at`, `updated_at`
+
+#### `votes` - Oy Kayıtları
+- `id` (Primary Key)
+- `voting_code_id` (Kod ID'si)
+- `registration_id` (Kayıt ID'si)
+- `ip_address` (IP adresi)
+- `user_agent` (Tarayıcı bilgisi)
+- `created_at`, `updated_at`
+
+#### `whats_app_settings` - WhatsApp Ayarları
+- `id` (Primary Key)
+- `whatsapp_enabled` (Aktif mi?)
+- `whatsapp_approved_message` (Onay mesajı)
+- `whatsapp_rejected_message` (Red mesajı)
+- `whatsapp_pending_message` (Bekleme mesajı)
+- `created_at`, `updated_at`
+
+## Dosya Yapısı
+
+```
+hyperdrive/
+├── app/
+│   ├── Filament/                    # Admin panel
+│   │   ├── Resources/              # Model yönetimi
+│   │   └── Pages/                  # Özel sayfalar
+│   ├── Http/Controllers/           # Controller'lar
+│   └── Models/                     # Model'ler
+├── database/
+│   ├── migrations/                 # Veritabanı şemaları
+│   └── seeders/                   # Test verileri
+├── public/                         # Statik dosyalar
+│   ├── css/                        # Stil dosyaları
+│   ├── js/                         # JavaScript dosyaları
+│   └── storage/                    # Yüklenen dosyalar
+└── resources/
+    └── views/                      # Blade template'leri
+```
+
+## Önemli Dosyalar
+
+### Frontend
+- `public/register.js` - Kayıt formu işlemleri
+- `public/voting.js` - Oylama sistemi
+- `public/style.css` - Ana stil dosyası
+
+### Backend
+- `app/Http/Controllers/RegistrationController.php` - Kayıt işlemleri
+- `app/Http/Controllers/VotingController.php` - Oylama API'leri
+- `app/Models/Registration.php` - Kayıt modeli
+- `app/Models/VotingCode.php` - Kod modeli
+
+### Admin Panel
+- `app/Filament/Resources/RegistrationResource.php` - Kayıt yönetimi
+- `app/Filament/Resources/WhatsAppSettingsResource.php` - WhatsApp ayarları
+
+## Güvenlik
+
+1. **CSRF Koruması** - Tüm formlarda CSRF token var
+2. **Input Validasyonu** - Hem tarayıcıda hem sunucuda kontrol
+3. **File Upload Güvenliği** - Sadece resim dosyaları kabul ediliyor
+4. **SQL Injection Koruması** - Eloquent ORM kullanıyoruz
+5. **XSS Koruması** - Blade template escaping
+
+## Performans
+
+1. **Database Indexing** - Sık sorgulanan alanlar için index
+2. **Caching** - WhatsApp ayarları cache'leniyor
+3. **Image Optimization** - Yüklenen resimler optimize ediliyor
+4. **Lazy Loading** - Büyük listeler için sayfalama
+
+## Sorun Giderme
+
+### Yaygın Sorunlar
+
+#### "500 Internal Server Error"
+```bash
+# Log dosyalarını kontrol edin
+tail -f storage/logs/laravel.log
+```
+
+#### "Storage link not found"
+```bash
+php artisan storage:link
+```
+
+#### "Database table not found"
+```bash
+php artisan migrate:fresh
+```
+
+#### "Permission denied"
+```bash
+chmod -R 755 storage/
+chmod -R 755 bootstrap/cache/
+```
+
+### Debug Modu
+```bash
+# .env dosyasında
+APP_DEBUG=true
+APP_ENV=local
+```
+
+## Önemli Bilgiler
+
+- **Admin Panel**: http://localhost:8000/admin
+- **Admin E-posta**: admin@example.com
+- **Admin Şifre**: password
+- **Kayıt Sayfası**: http://localhost:8000/register
+- **Oylama Sayfası**: http://localhost:8000/voting
+
+## İletişim
