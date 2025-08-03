@@ -63,7 +63,7 @@
                 <p class="hero-subtitle">{{ $homeSettings->hero_subtitle }}</p>
                 <div class="hero-buttons">
                     <a href="{{ route('events') }}" class="btn-primary">Tədbirləri Kəşf Et</a>
-                    <a href="{{ route('register.show') }}" class="btn-secondary">Cəmiyyətə Qoşul</a>
+                    <a href="{{ route('register') }}" class="btn-secondary">Cəmiyyətə Qoşul</a>
                 </div>
             </div>
             <div class="hero-stats">
@@ -94,9 +94,9 @@
                         <span class="quick-spots">{{ $homeSettings->latest_event_spots }}</span>
                     </div>
                 </div>
-                <a href="{{ route('register.show') }}" class="btn-event-quick">
-                    <span>QEYDİYYAT</span>
-                    <div class="btn-glow"></div>
+                <a href="{{ route('register') }}" class="btn-event-quick">
+                    <span class="btn-icon">🚗</span>
+                    <span class="btn-text">Arabanı Qeydiyyatdan Keçir</span>
                 </a>
             </div>
         </div>
@@ -175,7 +175,7 @@
                         <li>{{ $feature }}</li>
                         @endforeach
                     </ul>
-                    <a href="{{ route('register.show') }}" class="btn-primary">Üzv Ol</a>
+                    <a href="{{ route('register') }}" class="btn-primary">Üzv Ol</a>
                 </div>
                 <div class="community-stats">
                     <div class="stat-card">
@@ -214,8 +214,8 @@
                         <h4>Sürətli Giriş</h4>
                         <a href="{{ route('events') }}">Tədbirlər</a>
                         <a href="{{ route('cars') }}">Avtomobillər</a>
-                        <a href="{{ route('voting.show') }}">Səsvermə</a>
-                        <a href="{{ route('register.show') }}">Üzv Ol</a>
+                        <a href="{{ route('voting') }}">Səsvermə</a>
+                        <a href="{{ route('register') }}">Üzv Ol</a>
                     </div>
                     <div class="link-group">
                         <h4>Əlaqə</h4>

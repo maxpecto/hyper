@@ -24,7 +24,7 @@
             <div class="nav-menu nav-menu-right">
                 <a href="{{ route('voting.show') }}" class="nav-link active">Səsvermə</a>
                 <a href="sponsors.html" class="nav-link">Sponsorlar</a>
-                <a href="{{ route('register.show') }}" class="nav-link cta-link">Qoşul</a>
+                <a href="{{ route('register') }}" class="nav-link cta-link">Qoşul</a>
             </div>
             <div class="hamburger">
                 <span></span>
@@ -206,7 +206,7 @@
                         <a href="events.html">Etkinlikler</a>
                         <a href="cars.html">Otomobiller</a>
                         <a href="{{ route('voting.show') }}">Oylama</a>
-                        <a href="{{ route('register.show') }}">Üye Ol</a>
+                        <a href="{{ route('register') }}">Üye Ol</a>
                     </div>
                     <div class="link-group">
                         <h4>İletişim</h4>
