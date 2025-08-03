@@ -33,6 +33,15 @@ class HomePageResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Ana Sayfalar';
 
+    public static function getNavigationUrl(): string
+    {
+        // Tek ana sayfa kaydını al
+        $record = HomePage::getSettings();
+        
+        // Direkt edit sayfasına yönlendir
+        return static::getUrl('edit', ['record' => $record->id]);
+    }
+
     public static function form(Form $form): Form
     {
         return $form
