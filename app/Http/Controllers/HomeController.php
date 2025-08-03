@@ -12,7 +12,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $homeSettings = HomePage::getActiveSettings();
+        $homeSettings = HomePage::getSettings();
         
         return view('home', compact('homeSettings'));
     }

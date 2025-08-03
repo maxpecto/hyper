@@ -52,11 +52,17 @@ class HomePage extends Model
     ];
 
     /**
-     * Aktif ana sayfa ayarlarını getir
+     * Tek ana sayfa ayarlarını getir
      */
-    public static function getActiveSettings()
+    public static function getSettings()
     {
-        return static::where('is_active', true)->first() ?? static::createDefaultSettings();
+        $settings = static::first();
+        
+        if (!$settings) {
+            $settings = static::createDefaultSettings();
+        }
+        
+        return $settings;
     }
 
     /**

@@ -239,10 +239,9 @@ class HomePageResource extends Resource
                 Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+                // Bulk actions kaldırıldı çünkü sadece tek kayıt olacak
+            ])
+            ->paginated(false); // Sayfalama kaldırıldı
     }
 
     public static function getRelations(): array
@@ -256,7 +255,6 @@ class HomePageResource extends Resource
     {
         return [
             'index' => Pages\ListHomePages::route('/'),
-            'create' => Pages\CreateHomePage::route('/create'),
             'edit' => Pages\EditHomePage::route('/{record}/edit'),
             'view' => Pages\ViewHomePage::route('/{record}'),
         ];
