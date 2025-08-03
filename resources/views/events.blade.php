@@ -13,17 +13,17 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-menu nav-menu-left">
-                <a href="{{ route('home') }}" class="nav-link">Ana Səhifə</a>
-                <a href="{{ route('events') }}" class="nav-link active">Tədbirlər</a>
-                <a href="{{ route('cars') }}" class="nav-link">Avtomobillər</a>
+                <a href="{{ route('home') }}" class="nav-link">Ana Sehife</a>
+                <a href="{{ route('events') }}" class="nav-link active">Tedbirler</a>
+                <a href="{{ route('cars') }}" class="nav-link">Avtomobiller</a>
             </div>
             <div class="nav-logo">
                 <span class="logo-text">HYPER DRIVE</span>
             </div>
             <div class="nav-menu nav-menu-right">
-                <a href="{{ route('voting') }}" class="nav-link">Səsvermə</a>
+                <a href="{{ route('voting') }}" class="nav-link">Sesverme</a>
                 <a href="{{ route('sponsors') }}" class="nav-link">Sponsorlar</a>
-                <a href="{{ route('register') }}" class="nav-link cta-link">Qoşul</a>
+                <a href="{{ route('register') }}" class="nav-link cta-link">Qosul</a>
             </div>
             <div class="hamburger">
                 <span></span>

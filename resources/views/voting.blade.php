@@ -14,9 +14,9 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-menu nav-menu-left">
-                <a href="index.html" class="nav-link">Ana Səhifə</a>
-                <a href="events.html" class="nav-link">Tədbirlər</a>
-                <a href="cars.html" class="nav-link">Avtomobillər</a>
+                <a href="{{ route('home') }}" class="nav-link">Ana Səhifə</a>
+                <a href="{{ route('events') }}" class="nav-link">Tədbirlər</a>
+                <a href="{{ route('cars') }}" class="nav-link">Avtomobillər</a>
             </div>
             <div class="nav-logo">
                 <span class="logo-text">HYPER DRIVE</span>
@@ -48,33 +48,21 @@
     <section class="voting-stats">
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-card-voting">
-                    <div class="stat-icon">🏆</div>
-                    <div class="stat-info">
-                        <h3 id="totalVotes">{{ $stats['total_votes'] ?? 0 }}</h3>
-                        <p>Ümumi Səs</p>
-                    </div>
+                <div class="stat-item">
+                    <span class="stat-number">{{ $stats['total_votes'] ?? 0 }}</span>
+                    <span class="stat-label">Ümumi Səs</span>
                 </div>
-                <div class="stat-card-voting">
-                    <div class="stat-icon">🚗</div>
-                    <div class="stat-info">
-                        <h3 id="totalCars">{{ $stats['total_cars'] ?? 0 }}</h3>
-                        <p>Yarışan Araç</p>
-                    </div>
+                <div class="stat-item">
+                    <span class="stat-number">{{ $stats['total_cars'] ?? 0 }}</span>
+                    <span class="stat-label">Yarışan Araç</span>
                 </div>
-                <div class="stat-card-voting">
-                    <div class="stat-icon">🔑</div>
-                    <div class="stat-info">
-                        <h3 id="usedCodes">{{ $stats['used_codes'] ?? 0 }}</h3>
-                        <p>İstifadə Edilən Kod</p>
-                    </div>
+                <div class="stat-item">
+                    <span class="stat-number">{{ $stats['used_codes'] ?? 0 }}</span>
+                    <span class="stat-label">İstifadə Edilən Kod</span>
                 </div>
-                <div class="stat-card-voting">
-                    <div class="stat-icon">🎁</div>
-                    <div class="stat-info">
-                        <h3>₺5,000</h3>
-                        <p>Ödül Havuzu</p>
-                    </div>
+                <div class="stat-item">
+                    <span class="stat-number">₺5,000</span>
+                    <span class="stat-label">Ödül Havuzu</span>
                 </div>
             </div>
         </div>
@@ -202,17 +190,18 @@
                 </div>
                 <div class="footer-links">
                     <div class="link-group">
-                        <h4>Hızlı Erişim</h4>
-                        <a href="events.html">Etkinlikler</a>
-                        <a href="cars.html">Otomobiller</a>
-                        <a href="{{ route('voting') }}">Oylama</a>
-                        <a href="{{ route('register') }}">Üye Ol</a>
+                        <h4>Sayt Xəritəsi</h4>
+                        <a href="{{ route('home') }}">Ana Səhifə</a>
+                        <a href="{{ route('events') }}">Tədbirlər</a>
+                        <a href="{{ route('cars') }}">Avtomobillər</a>
+                        <a href="{{ route('voting') }}">Səsvermə</a>
+                        <a href="{{ route('register') }}">Üzv Ol</a>
                     </div>
                     <div class="link-group">
-                        <h4>İletişim</h4>
-                        <a href="#">info@hyperdrive.com</a>
-                        <a href="#">+90 (212) 555-0123</a>
-                        <a href="#">İstanbul, Türkiye</a>
+                        <h4>Əlaqə</h4>
+                        <a href="mailto:sudef.asgarov@hyperdrive.az">Email</a>
+                        <a href="tel:+994518281002">Telefon</a>
+                        <a href="https://www.hyperdrive.az">Veb Sayt</a>
                     </div>
                     <div class="link-group">
                         <h4>Sosyal</h4>
