@@ -95,8 +95,7 @@ class CarResource extends Resource
                             ->directory('avatars')
                             ->visibility('public')
                             ->imageEditor()
-                            ->imageCropAspectRatio('1:1')
-                            ->circularCropper(),
+                            ->imageCropAspectRatio('1:1'),
                     ])->columns(2),
 
                 Section::make('Görseller')
