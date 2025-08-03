@@ -70,7 +70,7 @@
                 @forelse($cars as $car)
                 <div class="car-card" data-category="{{ $car->category }}">
                     <div class="car-image">
-                        <img src="{{ $car->main_image ?? 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&h=300&fit=crop' }}" alt="{{ $car->title }}">
+                        <img src="{{ $car->main_image ? asset('storage/' . $car->main_image) : 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&h=300&fit=crop' }}" alt="{{ $car->title }}">
                         <div class="car-overlay">
                             <div class="car-stats">
                                 <div class="stat">⚡ {{ $car->horsepower }}</div>
@@ -96,7 +96,7 @@
                             </div>
                         </div>
                         <div class="car-owner">
-                            <img src="{{ $car->owner_avatar ?? 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face' }}" alt="Owner">
+                            <img src="{{ $car->owner_avatar ? asset('storage/' . $car->owner_avatar) : 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face' }}" alt="Owner">
                             <span>{{ $car->owner_username }}</span>
                         </div>
                         <div class="car-specs">

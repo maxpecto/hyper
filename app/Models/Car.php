@@ -155,8 +155,15 @@ class Car extends Model
         }
 
         // Başvuru fotoğraflarından ana görsel seç
-        $photos = $registration->photo_urls ?? [];
-        $mainImage = !empty($photos) ? $photos[0] : 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&h=300&fit=crop';
+        $photos = [];
+        if ($registration->front_photo) $photos[] = $registration->front_photo;
+        if ($registration->back_photo) $photos[] = $registration->back_photo;
+        if ($registration->left_photo) $photos[] = $registration->left_photo;
+        if ($registration->right_photo) $photos[] = $registration->right_photo;
+        if ($registration->interior_photo) $photos[] = $registration->interior_photo;
+        if ($registration->engine_photo) $photos[] = $registration->engine_photo;
+        
+        $mainImage = !empty($photos) ? $photos[0] : null;
 
         // Marka ve model bilgisini çıkar
         $carInfo = self::extractCarInfo($registration->car_brand, $registration->car_model);
@@ -196,7 +203,7 @@ class Car extends Model
             'title' => $registration->car_full_name,
             'owner_name' => $registration->full_name,
             'owner_username' => '@' . strtolower(str_replace(' ', '', $registration->full_name)),
-            'owner_avatar' => 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face',
+            'owner_avatar' => null, // Dosya yükleme ile doldurulacak
             'brand' => $carInfo['brand'],
             'model' => $carInfo['model'],
             'year' => $registration->car_year ?? '2024',

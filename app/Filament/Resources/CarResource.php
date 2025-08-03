@@ -13,6 +13,7 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TagsInput;
@@ -88,21 +89,35 @@ class CarResource extends Resource
                         TextInput::make('owner_username')
                             ->label('Kullanıcı Adı')
                             ->required(),
-                        TextInput::make('owner_avatar')
-                            ->label('Profil Fotoğrafı URL')
-                            ->url(),
+                        FileUpload::make('owner_avatar')
+                            ->label('Profil Fotoğrafı')
+                            ->image()
+                            ->directory('avatars')
+                            ->visibility('public')
+                            ->imageEditor()
+                            ->imageCropAspectRatio('1:1')
+                            ->circularCropper(),
                     ])->columns(2),
 
                 Section::make('Görseller')
                     ->schema([
-                        TextInput::make('main_image')
-                            ->label('Ana Görsel URL')
-                            ->url()
+                        FileUpload::make('main_image')
+                            ->label('Ana Görsel')
+                            ->image()
+                            ->directory('car-images')
+                            ->visibility('public')
+                            ->imageEditor()
+                            ->imageCropAspectRatio('16:9')
                             ->required(),
-                        TagsInput::make('gallery_images')
-                            ->label('Galeri Görselleri URL')
-                            ->separator(',')
-                            ->suggestions([]),
+                        FileUpload::make('gallery_images')
+                            ->label('Galeri Görselleri')
+                            ->multiple()
+                            ->image()
+                            ->directory('car-gallery')
+                            ->visibility('public')
+                            ->imageEditor()
+                            ->imageCropAspectRatio('16:9')
+                            ->maxFiles(10),
                     ])->columns(2),
 
                 Section::make('Değerlendirme')
