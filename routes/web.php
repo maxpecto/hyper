@@ -6,6 +6,7 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\VotingController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\SponsorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,14 @@ Route::prefix('voting')->name('voting.')->group(function () {
     Route::get('/stats', [VotingController::class, 'getStats'])->name('stats');
 });
 
-// Placeholder routes for other pages
-Route::get('/sponsors', function () {
-    return view('sponsors');
+// Sponsors route
+Route::get('/sponsors-page', function() { 
+    $sponsors = App\Models\Sponsor::active()->ordered()->get()->groupBy('category');
+    $categories = [
+        'platinum' => $sponsors->get('platinum', collect()),
+        'gold' => $sponsors->get('gold', collect()),
+        'silver' => $sponsors->get('silver', collect()),
+        'bronze' => $sponsors->get('bronze', collect()),
+    ];
+    return view('sponsors', compact('categories'));
 })->name('sponsors');

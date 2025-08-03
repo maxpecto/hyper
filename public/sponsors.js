@@ -1,311 +1,333 @@
-// Sponsors Slideshow JavaScript
+// Sponsors Page JavaScript
 
-let currentSlideIndex = 1;
-const totalSlides = 8;
-let slideInterval;
-let isAutoPlaying = true;
-
-// Initialize slideshow when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    showSlide(currentSlideIndex);
-    startAutoSlide();
-    addKeyboardNavigation();
-    addTouchNavigation();
+    // Initialize counters
+    initCounters();
+    
+    // Initialize sponsor cards
+    initSponsorCards();
+    
+    // Initialize modal
+    initModal();
 });
 
-// Show specific slide
-function showSlide(n) {
-    let slides = document.querySelectorAll('.sponsor-slide');
-    let indicators = document.querySelectorAll('.indicator');
+// Counter Animation
+function initCounters() {
+    const counters = document.querySelectorAll('.stat-number');
     
-    if (n > totalSlides) { currentSlideIndex = 1; }
-    if (n < 1) { currentSlideIndex = totalSlides; }
-    
-    // Hide all slides
-    slides.forEach(slide => {
-        slide.classList.remove('active');
-    });
-    
-    // Remove active from all indicators
-    indicators.forEach(indicator => {
-        indicator.classList.remove('active');
-    });
-    
-    // Show current slide
-    if (slides[currentSlideIndex - 1]) {
-        slides[currentSlideIndex - 1].classList.add('active');
-    }
-    
-    // Highlight current indicator
-    if (indicators[currentSlideIndex - 1]) {
-        indicators[currentSlideIndex - 1].classList.add('active');
-    }
-}
-
-// Change slide (next/previous)
-function changeSlide(n) {
-    resetAutoSlide();
-    currentSlideIndex += n;
-    showSlide(currentSlideIndex);
-}
-
-// Go to specific slide
-function currentSlide(n) {
-    resetAutoSlide();
-    currentSlideIndex = n;
-    showSlide(currentSlideIndex);
-}
-
-// Auto slide functionality
-function startAutoSlide() {
-    slideInterval = setInterval(() => {
-        if (isAutoPlaying) {
-            currentSlideIndex++;
-            showSlide(currentSlideIndex);
-        }
-    }, 8000); // Change slide every 8 seconds
-}
-
-function stopAutoSlide() {
-    isAutoPlaying = false;
-    clearInterval(slideInterval);
-}
-
-function resetAutoSlide() {
-    stopAutoSlide();
-    setTimeout(() => {
-        isAutoPlaying = true;
-        startAutoSlide();
-    }, 3000); // Resume auto-play after 3 seconds of inactivity
-}
-
-// Keyboard navigation
-function addKeyboardNavigation() {
-    document.addEventListener('keydown', function(event) {
-        switch(event.key) {
-            case 'ArrowRight':
-            case ' ': // Spacebar
-                event.preventDefault();
-                changeSlide(1);
-                break;
-            case 'ArrowLeft':
-                event.preventDefault();
-                changeSlide(-1);
-                break;
-            case 'Home':
-                event.preventDefault();
-                currentSlide(1);
-                break;
-            case 'End':
-                event.preventDefault();
-                currentSlide(totalSlides);
-                break;
-            case 'Escape':
-                event.preventDefault();
-                // Toggle auto-play
-                if (isAutoPlaying) {
-                    stopAutoSlide();
-                } else {
-                    isAutoPlaying = true;
-                    startAutoSlide();
-                }
-                break;
-        }
-    });
-}
-
-// Touch/swipe navigation for mobile
-function addTouchNavigation() {
-    let startX = 0;
-    let endX = 0;
-    
-    document.addEventListener('touchstart', function(event) {
-        startX = event.touches[0].clientX;
-    });
-    
-    document.addEventListener('touchend', function(event) {
-        endX = event.changedTouches[0].clientX;
-        handleSwipe();
-    });
-    
-    function handleSwipe() {
-        const threshold = 50; // Minimum swipe distance
-        const diff = startX - endX;
+    counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16); // 60fps
+        let current = 0;
         
-        if (Math.abs(diff) > threshold) {
-            if (diff > 0) {
-                // Swipe left - next slide
-                changeSlide(1);
+        const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+                counter.textContent = Math.floor(current).toLocaleString();
+                requestAnimationFrame(updateCounter);
             } else {
-                // Swipe right - previous slide
-                changeSlide(-1);
+                counter.textContent = target.toLocaleString();
             }
-        }
-    }
-}
-
-// Mouse wheel navigation
-document.addEventListener('wheel', function(event) {
-    event.preventDefault();
-    
-    if (event.deltaY > 0) {
-        // Scroll down - next slide
-        changeSlide(1);
-    } else {
-        // Scroll up - previous slide
-        changeSlide(-1);
-    }
-}, { passive: false });
-
-// Auto-hide navigation after inactivity
-let navigationTimeout;
-const navigation = document.querySelector('.slide-navigation');
-
-function hideNavigation() {
-    navigation.classList.add('hidden');
-}
-
-function showNavigation() {
-    navigation.classList.remove('hidden');
-    clearTimeout(navigationTimeout);
-    navigationTimeout = setTimeout(hideNavigation, 3000);
-}
-
-// Show navigation on mouse move
-document.addEventListener('mousemove', showNavigation);
-document.addEventListener('touchstart', showNavigation);
-
-// Keep navigation visible when hovering over it
-navigation.addEventListener('mouseenter', () => {
-    clearTimeout(navigationTimeout);
-});
-
-navigation.addEventListener('mouseleave', () => {
-    navigationTimeout = setTimeout(hideNavigation, 3000);
-});
-
-// Pause auto-play when tab is not visible
-document.addEventListener('visibilitychange', function() {
-    if (document.hidden) {
-        stopAutoSlide();
-    } else if (isAutoPlaying) {
-        startAutoSlide();
-    }
-});
-
-// Add keyboard hint to page
-function addKeyboardHint() {
-    const hint = document.createElement('div');
-    hint.className = 'keyboard-hint';
-    hint.innerHTML = `
-        <p><span class="key">←/→</span> Navigate</p>
-        <p><span class="key">Space</span> Next</p>
-        <p><span class="key">Home/End</span> First/Last</p>
-        <p><span class="key">Esc</span> Pause/Play</p>
-    `;
-    document.body.appendChild(hint);
-    
-    // Hide hint on mobile
-    if (window.innerWidth <= 768) {
-        hint.style.display = 'none';
-    }
-}
-
-// Initialize keyboard hint
-document.addEventListener('DOMContentLoaded', addKeyboardHint);
-
-// Progress indicator (optional)
-function updateProgress() {
-    const progress = (currentSlideIndex / totalSlides) * 100;
-    // You can add a progress bar here if needed
-}
-
-// Smooth slide transitions
-function addSmoothTransitions() {
-    const slides = document.querySelectorAll('.sponsor-slide');
-    slides.forEach(slide => {
-        slide.style.transition = 'opacity 0.5s ease-in-out';
+        };
+        
+        // Start animation when element is in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    updateCounter();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+        
+        observer.observe(counter);
     });
 }
 
-// Initialize smooth transitions
-document.addEventListener('DOMContentLoaded', addSmoothTransitions);
-
-// Preload images for better performance
-function preloadImages() {
-    for (let i = 1; i <= totalSlides; i++) {
-        const img = new Image();
-        img.src = `sponsors/HYPERDRİVE_PARKMEET25-${i}.png`;
-    }
+// Sponsor Cards
+function initSponsorCards() {
+    const cards = document.querySelectorAll('.sponsor-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('click', function() {
+            const sponsorId = this.getAttribute('data-sponsor-id');
+            openSponsorModal(sponsorId);
+        });
+        
+        // Add hover sound effect
+        card.addEventListener('mouseenter', function() {
+            playHoverSound();
+        });
+    });
 }
 
-// Preload images when page loads
-document.addEventListener('DOMContentLoaded', preloadImages);
-
-// Add fullscreen functionality (optional)
-function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-    } else {
-        document.exitFullscreen();
+// Modal Functions
+function initModal() {
+    const modal = document.getElementById('sponsorModal');
+    const closeBtn = modal.querySelector('.modal-close');
+    const overlay = modal.querySelector('.modal-overlay');
+    
+    // Close modal
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
-}
-
-// Add fullscreen on F11 or double-click
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'F11') {
-        event.preventDefault();
-        toggleFullscreen();
-    }
-});
-
-// Double-click to toggle fullscreen
-document.addEventListener('dblclick', function(event) {
-    if (event.target.closest('.sponsor-slide')) {
-        toggleFullscreen();
-    }
-});
-
-// Handle browser resize
-window.addEventListener('resize', function() {
-    // Adjust layout if needed
-    const slides = document.querySelectorAll('.sponsor-slide');
-    slides.forEach(slide => {
-        const img = slide.querySelector('img');
-        if (img) {
-            img.style.width = '100%';
-            img.style.height = '100vh';
-            img.style.objectFit = 'cover';
+    
+    // Event listeners
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+    
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            closeModal();
         }
     });
-});
+}
 
-// Add loading animation
-function showLoading() {
-    const loading = document.createElement('div');
-    loading.className = 'loading-spinner';
-    loading.innerHTML = '<div class="spinner"></div>';
-    loading.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-    `;
-    document.body.appendChild(loading);
+// Open sponsor modal
+function openSponsorModal(sponsorId) {
+    const modal = document.getElementById('sponsorModal');
     
-    // Remove loading when images are loaded
+    // Show loading state
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    // Fetch sponsor data (in real app, this would be an API call)
+    // For now, we'll use mock data
+    const mockData = getMockSponsorData(sponsorId);
+    
+    // Update modal content
+    updateModalContent(mockData);
+    
+    // Add entrance animation
+    const modalContent = modal.querySelector('.modal-content');
+    modalContent.style.transform = 'scale(0.8)';
+    modalContent.style.opacity = '0';
+    
     setTimeout(() => {
-        loading.remove();
-    }, 1000);
+        modalContent.style.transform = 'scale(1)';
+        modalContent.style.opacity = '1';
+    }, 100);
 }
 
-// Show loading on page load
-document.addEventListener('DOMContentLoaded', showLoading);
+// Update modal content
+function updateModalContent(data) {
+    const modal = document.getElementById('sponsorModal');
+    
+    // Update logo
+    const logo = modal.querySelector('#modalLogo');
+    if (data.logo) {
+        logo.src = data.logo;
+        logo.style.display = 'block';
+    } else {
+        logo.style.display = 'none';
+    }
+    
+    // Update title
+    modal.querySelector('#modalTitle').textContent = data.name;
+    
+    // Update category
+    const categoryEl = modal.querySelector('#modalCategory');
+    categoryEl.textContent = data.category;
+    categoryEl.className = `modal-category ${data.category.toLowerCase()}-badge`;
+    
+    // Update description
+    modal.querySelector('#modalDescription').textContent = data.description || 'Bu sponsor hakkında detaylı bilgi yakında eklenecek.';
+    
+    // Update contact links
+    const websiteLink = modal.querySelector('#modalWebsite');
+    const emailLink = modal.querySelector('#modalEmail');
+    const phoneLink = modal.querySelector('#modalPhone');
+    
+    if (data.website) {
+        websiteLink.href = data.website;
+        websiteLink.style.display = 'flex';
+    } else {
+        websiteLink.style.display = 'none';
+    }
+    
+    if (data.email) {
+        emailLink.href = `mailto:${data.email}`;
+        emailLink.style.display = 'flex';
+    } else {
+        emailLink.style.display = 'none';
+    }
+    
+    if (data.phone) {
+        phoneLink.href = `tel:${data.phone}`;
+        phoneLink.style.display = 'flex';
+    } else {
+        phoneLink.style.display = 'none';
+    }
+    
+    // Update social links
+    const instagramLink = modal.querySelector('#modalInstagram');
+    const facebookLink = modal.querySelector('#modalFacebook');
+    const linkedinLink = modal.querySelector('#modalLinkedin');
+    
+    if (data.instagram) {
+        instagramLink.href = data.instagram;
+        instagramLink.style.display = 'flex';
+    } else {
+        instagramLink.style.display = 'none';
+    }
+    
+    if (data.facebook) {
+        facebookLink.href = data.facebook;
+        facebookLink.style.display = 'flex';
+    } else {
+        facebookLink.style.display = 'none';
+    }
+    
+    if (data.linkedin) {
+        linkedinLink.href = data.linkedin;
+        linkedinLink.style.display = 'flex';
+    } else {
+        linkedinLink.style.display = 'none';
+    }
+    
+    // Update partnership period
+    modal.querySelector('#modalPartnership').textContent = data.partnershipPeriod;
+}
 
-console.log('🚗 HyperDrive Sponsors Slideshow Loaded Successfully!'); 
+// Mock data function (replace with real API call)
+function getMockSponsorData(sponsorId) {
+    const mockData = {
+        '1': {
+            name: '156',
+            logo: null,
+            category: 'Platinum',
+            description: 'Premium otomobil markası',
+            website: 'https://156.az',
+            email: 'info@156.az',
+            phone: '+994501234567',
+            instagram: 'https://instagram.com/156',
+            facebook: 'https://facebook.com/156',
+            linkedin: 'https://linkedin.com/company/156',
+            partnershipPeriod: '2023 - 2025'
+        },
+        '2': {
+            name: 'Bizon',
+            logo: null,
+            category: 'Gold',
+            description: 'Güvenilir otomobil servisi',
+            website: 'https://bizon.az',
+            email: 'info@bizon.az',
+            phone: '+994502345678',
+            instagram: 'https://instagram.com/bizon',
+            facebook: 'https://facebook.com/bizon',
+            linkedin: null,
+            partnershipPeriod: '2024 - 2025'
+        }
+    };
+    
+    return mockData[sponsorId] || {
+        name: 'Sponsor',
+        logo: null,
+        category: 'Bronze',
+        description: 'Bu sponsor hakkında detaylı bilgi yakında eklenecek.',
+        website: null,
+        email: null,
+        phone: null,
+        instagram: null,
+        facebook: null,
+        linkedin: null,
+        partnershipPeriod: '2025 - Devam Ediyor'
+    };
+}
+
+// Sound effects
+function playHoverSound() {
+    // Create audio context for hover sound
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    
+    // Simple hover sound
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(600, audioContext.currentTime + 0.1);
+    
+    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.1);
+}
+
+// Particle animation enhancement
+function initParticles() {
+    const particlesContainer = document.querySelector('.particles');
+    if (!particlesContainer) return;
+    
+    // Create additional particles
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.cssText = `
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            background: #00D4FF;
+            border-radius: 50%;
+            left: ${Math.random() * 100}%;
+            animation: particleFloat ${6 + Math.random() * 4}s linear infinite;
+            animation-delay: ${Math.random() * 6}s;
+        `;
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// Initialize particles when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    initParticles();
+});
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Add loading animation for images
+document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('load', function() {
+        this.style.opacity = '1';
+    });
+    
+    img.addEventListener('error', function() {
+        this.style.display = 'none';
+    });
+});
+
+// Add intersection observer for animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+        }
+    });
+}, observerOptions);
+
+// Observe elements for animation
+document.querySelectorAll('.sponsor-card, .contact-item').forEach(el => {
+    observer.observe(el);
+}); 
