@@ -10,23 +10,36 @@ class Registration extends Model
     use HasFactory;
 
     protected $fillable = [
-        'full_name',
+        'first_name',
+        'last_name',
         'email',
         'phone',
+        'username',
         'car_brand',
         'car_model',
         'car_year',
         'car_color',
+        'modifications',
+        'experience',
         'interests',
-        'newsletter_subscription',
-        'photo_urls',
+        'front_photo',
+        'back_photo',
+        'left_photo',
+        'right_photo',
+        'interior_photo',
+        'engine_photo',
         'status',
+        'admin_notes',
+        'newsletter_subscription',
+        'approved_at',
+        'rejected_at',
     ];
 
     protected $casts = [
         'interests' => 'array',
         'newsletter_subscription' => 'boolean',
-        'photo_urls' => 'array',
+        'approved_at' => 'datetime',
+        'rejected_at' => 'datetime',
     ];
 
     /**
@@ -43,6 +56,14 @@ class Registration extends Model
     public function car()
     {
         return $this->hasOne(Car::class);
+    }
+
+    /**
+     * Tam ad accessor
+     */
+    public function getFullNameAttribute()
+    {
+        return trim($this->first_name . ' ' . $this->last_name);
     }
 
     /**
@@ -102,12 +123,18 @@ class Registration extends Model
      */
     public function getPhotoUrlsAttribute()
     {
-        if (empty($this->photo_urls)) {
-            return [];
-        }
+        $photos = [];
+        
+        if ($this->front_photo) $photos[] = $this->front_photo;
+        if ($this->back_photo) $photos[] = $this->back_photo;
+        if ($this->left_photo) $photos[] = $this->left_photo;
+        if ($this->right_photo) $photos[] = $this->right_photo;
+        if ($this->interior_photo) $photos[] = $this->interior_photo;
+        if ($this->engine_photo) $photos[] = $this->engine_photo;
+        
         return array_map(function($photo) {
             return asset('storage/' . $photo);
-        }, $this->photo_urls);
+        }, $photos);
     }
 
     /**
@@ -147,7 +174,10 @@ class Registration extends Model
      */
     public function approve()
     {
-        $this->update(['status' => 'approved']);
+        $this->update([
+            'status' => 'approved',
+            'approved_at' => now(),
+        ]);
         
         // Araba oluştur
         Car::createFromRegistration($this);
@@ -160,7 +190,10 @@ class Registration extends Model
      */
     public function reject()
     {
-        $this->update(['status' => 'rejected']);
+        $this->update([
+            'status' => 'rejected',
+            'rejected_at' => now(),
+        ]);
         return $this;
     }
 }

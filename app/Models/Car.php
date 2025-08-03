@@ -155,11 +155,42 @@ class Car extends Model
         }
 
         // Başvuru fotoğraflarından ana görsel seç
-        $photos = $registration->photo_urls;
-        $mainImage = !empty($photos) ? $photos[0] : null;
+        $photos = $registration->photo_urls ?? [];
+        $mainImage = !empty($photos) ? $photos[0] : 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&h=300&fit=crop';
 
         // Marka ve model bilgisini çıkar
         $carInfo = self::extractCarInfo($registration->car_brand, $registration->car_model);
+
+        // Varsayılan performans bilgileri
+        $defaultHorsepower = 'Bilinmiyor';
+        $defaultAcceleration = 'Bilinmiyor';
+
+        // Markaya göre varsayılan değerler
+        $brandDefaults = [
+            'BMW' => ['horsepower' => '300+ HP', 'acceleration' => '0-100: 5.5s'],
+            'Mercedes' => ['horsepower' => '350+ HP', 'acceleration' => '0-100: 5.2s'],
+            'Audi' => ['horsepower' => '320+ HP', 'acceleration' => '0-100: 5.8s'],
+            'Toyota' => ['horsepower' => '200+ HP', 'acceleration' => '0-100: 7.0s'],
+            'Honda' => ['horsepower' => '180+ HP', 'acceleration' => '0-100: 7.5s'],
+            'Nissan' => ['horsepower' => '250+ HP', 'acceleration' => '0-100: 6.5s'],
+        ];
+
+        if (isset($brandDefaults[$carInfo['brand']])) {
+            $defaults = $brandDefaults[$carInfo['brand']];
+            $defaultHorsepower = $defaults['horsepower'];
+            $defaultAcceleration = $defaults['acceleration'];
+        }
+
+        // Kategoriye göre varsayılan etiketler
+        $categoryTags = [
+            'bmw' => ['Performance', 'Luxury'],
+            'mercedes' => ['Luxury', 'Performance'],
+            'audi' => ['Performance', '4-Door'],
+            'japanese' => ['JDM', 'Reliable'],
+            'other' => ['Show', 'Daily'],
+        ];
+
+        $defaultTags = $categoryTags[self::determineCategory($carInfo['brand'])] ?? ['Show', 'Daily'];
 
         return static::create([
             'title' => $registration->car_full_name,
@@ -171,10 +202,10 @@ class Car extends Model
             'year' => $registration->car_year ?? '2024',
             'color' => $registration->car_color ?? 'Bilinmiyor',
             'modification' => 'Stock',
-            'horsepower' => 'Bilinmiyor',
-            'acceleration' => 'Bilinmiyor',
+            'horsepower' => $defaultHorsepower,
+            'acceleration' => $defaultAcceleration,
             'category' => self::determineCategory($carInfo['brand']),
-            'tags' => ['Show', 'Daily'],
+            'tags' => $defaultTags,
             'main_image' => $mainImage,
             'gallery_images' => $photos,
             'rating' => 5.0,
