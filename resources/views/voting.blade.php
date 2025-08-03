@@ -10,29 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-menu nav-menu-left">
-                <a href="{{ route('home') }}" class="nav-link">Ana Səhifə</a>
-                <a href="{{ route('events') }}" class="nav-link">Tədbirlər</a>
-                <a href="{{ route('cars') }}" class="nav-link">Avtomobillər</a>
-            </div>
-            <div class="nav-logo">
-                <span class="logo-text">HYPER DRIVE</span>
-            </div>
-            <div class="nav-menu nav-menu-right">
-                <a href="{{ route('voting') }}" class="nav-link active">Səsvermə</a>
-                <a href="{{ route('sponsors') }}" class="nav-link">Sponsorlar</a>
-                <a href="{{ route('register') }}" class="nav-link cta-link">Qoşul</a>
-            </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+    @include('components.navigation')
 
     <!-- Page Header -->
     <section class="page-header">
