@@ -199,54 +199,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <span>HYPER DRIVE</span>
-                    </div>
-                    <p>{{ $homeSettings->footer_description }}</p>
-                </div>
-                <div class="footer-links">
-                    <div class="link-group">
-                        <h4>Sürətli Giriş</h4>
-                        <a href="{{ route('events') }}">Tədbirlər</a>
-                        <a href="{{ route('cars') }}">Avtomobillər</a>
-                        <a href="{{ route('voting') }}">Səsvermə</a>
-                        <a href="{{ route('register') }}">Üzv Ol</a>
-                    </div>
-                    <div class="link-group">
-                        <h4>Əlaqə</h4>
-                        <a href="mailto:{{ $homeSettings->footer_email }}">{{ $homeSettings->footer_email }}</a>
-                        @if($homeSettings->footer_instagram)
-                        <a href="{{ $homeSettings->footer_instagram }}">Instagram</a>
-                        @endif
-                        <a href="#">{{ $homeSettings->footer_location }}</a>
-                    </div>
-                    <div class="link-group">
-                        <h4>Sosyal</h4>
-                        @if($homeSettings->footer_instagram)
-                        <a href="{{ $homeSettings->footer_instagram }}">Instagram</a>
-                        @endif
-                        @if($homeSettings->footer_tiktok)
-                        <a href="{{ $homeSettings->footer_tiktok }}">TikTok</a>
-                        @endif
-                        @if($homeSettings->footer_youtube)
-                        <a href="{{ $homeSettings->footer_youtube }}">YouTube</a>
-                        @endif
-                        @if($homeSettings->footer_telegram)
-                        <a href="{{ $homeSettings->footer_telegram }}">Telegram</a>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; {{ date('Y') }} Hyper Drive. Bütün hüquqlar qorunur.</p>
-            </div>
-        </div>
-    </footer>
+    @include('components.footer')
 
     <script src="{{ asset('script.js') }}"></script>
 </body>

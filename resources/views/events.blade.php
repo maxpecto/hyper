@@ -115,72 +115,9 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <span>HYPER DRIVE</span>
-                    </div>
-                    <p>Gelecek burada. Arabanla tanışma zamanı.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="link-group">
-                        <h4>Hızlı Erişim</h4>
-                        <a href="{{ route('events') }}">Etkinlikler</a>
-                        <a href="{{ route('cars') }}">Otomobiller</a>
-                        <a href="{{ route('voting') }}">Oylama</a>
-                        <a href="{{ route('register') }}">Üye Ol</a>
-                    </div>
-                    <div class="link-group">
-                        <h4>İletişim</h4>
-                        <a href="#">info@hyperdrive.com</a>
-                        <a href="#">+90 (212) 555-0123</a>
-                        <a href="#">İstanbul, Türkiye</a>
-                    </div>
-                    <div class="link-group">
-                        <h4>Sosyal</h4>
-                        <a href="#">Instagram</a>
-                        <a href="#">YouTube</a>
-                        <a href="#">Discord</a>
-                        <a href="#">TikTok</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Hyper Drive. Tüm hakları saklıdır.</p>
-            </div>
-        </div>
-    </footer>
+    @include('components.footer')
 
     <script src="{{ asset('script.js') }}"></script>
-    <script>
-        // Filter functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const eventCards = document.querySelectorAll('.event-card-detailed');
-
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    const filter = this.getAttribute('data-filter');
-                    
-                    eventCards.forEach(card => {
-                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            });
-        });
-    </script>
+    <script src="{{ asset('events.js') }}"></script>
 </body>
 </html> 
