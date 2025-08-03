@@ -4,206 +4,163 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-/**
- * Araba Kayıt Modeli
- * 
- * Bu model, kullanıcıların araba kayıt bilgilerini temsil eder.
- * Kayıt durumu, fotoğraflar ve oy ilişkilerini yönetir.
- */
 class Registration extends Model
 {
     use HasFactory;
 
-    /**
-     * Toplu atama için güvenli alanlar
-     * 
-     * @var array
-     */
     protected $fillable = [
-        'full_name',           // Ad ve soyad
-        'phone',               // Telefon numarası
-        'email',               // E-posta adresi
-        'car_brand',           // Araba markası
-        'car_model',           // Araba modeli
-        'car_year',            // Üretim yılı
-        'engine_size',         // Motor hacmi
-        'modifications',       // Modifikasyonlar
-        'experience_years',    // Deneyim yılı
-        'interests',           // İlgi alanları (JSON)
-        'photo_front',         // Ön fotoğraf yolu
-        'photo_back',          // Arka fotoğraf yolu
-        'photo_left',          // Sol fotoğraf yolu
-        'photo_right',         // Sağ fotoğraf yolu
-        'photo_interior',      // İç mekan fotoğraf yolu
-        'photo_engine',        // Motor fotoğraf yolu
-        'status',              // Durum (pending, approved, rejected)
-        'admin_notes',         // Admin notları
-        'newsletter_subscription', // Bülten aboneliği
+        'full_name',
+        'email',
+        'phone',
+        'car_brand',
+        'car_model',
+        'car_year',
+        'car_color',
+        'interests',
+        'newsletter_subscription',
+        'photo_urls',
+        'status',
     ];
 
-    /**
-     * Veri türü dönüşümleri
-     * 
-     * @var array
-     */
     protected $casts = [
-        'interests' => 'array',                    // JSON array olarak
-        'newsletter_subscription' => 'boolean',    // Boolean olarak
-        'car_year' => 'integer',                   // Integer olarak
-        'experience_years' => 'integer',           // Integer olarak
-        'created_at' => 'datetime',                // DateTime olarak
-        'updated_at' => 'datetime',                // DateTime olarak
+        'interests' => 'array',
+        'newsletter_subscription' => 'boolean',
+        'photo_urls' => 'array',
     ];
 
     /**
-     * Durum seçenekleri
-     * 
-     * @var array
+     * Oy ilişkisi
      */
-    public const STATUS_PENDING = 'pending';      // Bekliyor
-    public const STATUS_APPROVED = 'approved';    // Onaylandı
-    public const STATUS_REJECTED = 'rejected';    // Reddedildi
-
-    /**
-     * Bu kayıta verilen oyları getirir
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function votes(): HasMany
+    public function votes()
     {
         return $this->hasMany(Vote::class);
     }
 
     /**
-     * Toplam oy sayısını hesaplar
-     * 
-     * @return int
+     * Araba ilişkisi
      */
-    public function getVoteCountAttribute(): int
+    public function car()
+    {
+        return $this->hasOne(Car::class);
+    }
+
+    /**
+     * Oy sayısı accessor
+     */
+    public function getVoteCountAttribute()
     {
         return $this->votes()->count();
     }
 
     /**
-     * Oy yüzdesini hesaplar
-     * 
-     * @return float
+     * Oy yüzdesi accessor
      */
-    public function getVotePercentageAttribute(): float
+    public function getVotePercentageAttribute()
     {
         $totalVotes = Vote::count();
-        
         if ($totalVotes === 0) {
-            return 0.0;
+            return 0;
         }
-        
         return round(($this->vote_count / $totalVotes) * 100, 1);
     }
 
     /**
-     * Durum badge rengini döner
-     * 
-     * @return string
+     * Durum rengi accessor
      */
-    public function getStatusColorAttribute(): string
+    public function getStatusColorAttribute()
     {
         return match($this->status) {
-            self::STATUS_PENDING => 'warning',
-            self::STATUS_APPROVED => 'success',
-            self::STATUS_REJECTED => 'danger',
-            default => 'secondary'
+            'approved' => 'success',
+            'rejected' => 'danger',
+            default => 'warning',
         };
     }
 
     /**
-     * Durum metnini Azerbaycan dilinde döner
-     * 
-     * @return string
+     * Durum metni accessor
      */
-    public function getStatusTextAttribute(): string
+    public function getStatusTextAttribute()
     {
         return match($this->status) {
-            self::STATUS_PENDING => 'Gözləyir',
-            self::STATUS_APPROVED => 'Təsdiqləndi',
-            self::STATUS_REJECTED => 'Rədd edildi',
-            default => 'Naməlum'
+            'approved' => 'Onaylandı',
+            'rejected' => 'Reddedildi',
+            default => 'Beklemede',
         };
     }
 
     /**
-     * Araba tam adını döner
-     * 
-     * @return string
+     * Araba tam adı accessor
      */
-    public function getCarFullNameAttribute(): string
+    public function getCarFullNameAttribute()
     {
-        return "{$this->car_brand} {$this->car_model} ({$this->car_year})";
+        return trim($this->car_brand . ' ' . $this->car_model);
     }
 
     /**
-     * Fotoğraf URL'lerini döner
-     * 
-     * @return array
+     * Fotoğraf URL'leri accessor
      */
-    public function getPhotoUrlsAttribute(): array
+    public function getPhotoUrlsAttribute()
     {
-        $baseUrl = asset('storage/');
-        
-        return [
-            'front' => $this->photo_front ? $baseUrl . '/' . $this->photo_front : null,
-            'back' => $this->photo_back ? $baseUrl . '/' . $this->photo_back : null,
-            'left' => $this->photo_left ? $baseUrl . '/' . $this->photo_left : null,
-            'right' => $this->photo_right ? $baseUrl . '/' . $this->photo_right : null,
-            'interior' => $this->photo_interior ? $baseUrl . '/' . $this->photo_interior : null,
-            'engine' => $this->photo_engine ? $baseUrl . '/' . $this->photo_engine : null,
-        ];
+        if (empty($this->photo_urls)) {
+            return [];
+        }
+        return array_map(function($photo) {
+            return asset('storage/' . $photo);
+        }, $this->photo_urls);
     }
 
     /**
-     * Onaylanmış kayıtları getirir
-     * 
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * Onaylanmış başvurular scope
      */
     public function scopeApproved($query)
     {
-        return $query->where('status', self::STATUS_APPROVED);
+        return $query->where('status', 'approved');
     }
 
     /**
-     * Bekleyen kayıtları getirir
-     * 
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * Bekleyen başvurular scope
      */
     public function scopePending($query)
     {
-        return $query->where('status', self::STATUS_PENDING);
+        return $query->where('status', 'pending');
     }
 
     /**
-     * Reddedilen kayıtları getirir
-     * 
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * Reddedilmiş başvurular scope
      */
     public function scopeRejected($query)
     {
-        return $query->where('status', self::STATUS_REJECTED);
+        return $query->where('status', 'rejected');
     }
 
     /**
-     * En çok oy alan arabaları getirir
-     * 
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * En çok oy alan başvurular scope
      */
     public function scopeTopVoted($query)
     {
-        return $query->approved()
-            ->withCount('votes')
-            ->orderBy('votes_count', 'desc');
+        return $query->withCount('votes')->orderBy('votes_count', 'desc');
+    }
+
+    /**
+     * Başvuru onaylandığında araba oluştur
+     */
+    public function approve()
+    {
+        $this->update(['status' => 'approved']);
+        
+        // Araba oluştur
+        Car::createFromRegistration($this);
+        
+        return $this;
+    }
+
+    /**
+     * Başvuru reddedildiğinde
+     */
+    public function reject()
+    {
+        $this->update(['status' => 'rejected']);
+        return $this;
     }
 }

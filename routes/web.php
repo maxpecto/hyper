@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\VotingController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\CarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::get('/register', [RegistrationController::class, 'show'])->name('register
 Route::post('/register', [RegistrationController::class, 'store'])->name('register.store');
 Route::get('/voting', [VotingController::class, 'show'])->name('voting');
 Route::get('/events', [EventController::class, 'index'])->name('events');
+Route::get('/cars', [CarController::class, 'index'])->name('cars');
+Route::get('/cars/{id}', [CarController::class, 'show'])->name('cars.show');
 
 // Voting API routes
 Route::prefix('voting')->name('voting.')->group(function () {
@@ -31,10 +34,6 @@ Route::prefix('voting')->name('voting.')->group(function () {
 });
 
 // Placeholder routes for other pages
-Route::get('/cars', function () {
-    return view('cars');
-})->name('cars');
-
 Route::get('/sponsors', function () {
     return view('sponsors');
 })->name('sponsors');
