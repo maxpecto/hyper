@@ -21,9 +21,9 @@
                 <span class="logo-text">HYPER DRIVE</span>
             </div>
             <div class="nav-menu nav-menu-right">
-                <a href="{{ route('voting.show') }}" class="nav-link">Səsvermə</a>
+                <a href="{{ route('voting') }}" class="nav-link">Səsvermə</a>
                 <a href="{{ route('sponsors') }}" class="nav-link">Sponsorlar</a>
-                <a href="{{ route('register.show') }}" class="nav-link cta-link">Qoşul</a>
+                <a href="{{ route('register') }}" class="nav-link cta-link">Qoşul</a>
             </div>
             <div class="hamburger">
                 <span></span>
