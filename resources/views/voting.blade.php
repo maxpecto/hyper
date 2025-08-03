@@ -62,7 +62,7 @@
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">₺5,000</span>
-                    <span class="stat-label">Ödül Havuzu</span>
+                    <span class="stat-label">Mükafat</span>
                 </div>
             </div>
         </div>
@@ -72,11 +72,11 @@
     <div id="codeModal" class="modal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Oy Kullanma Kodu</h2>
+                <h2>Səs Vermə Kodu</h2>
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-                <p>Oy vermək üçün kodunuzu daxil edin:</p>
+                <p>Səs vermək üçün kodunuzu daxil edin:</p>
                 <div class="form-group">
                     <input type="text" id="votingCode" placeholder="Kodunuzu daxil edin" maxlength="10">
                     <div class="form-glow"></div>
@@ -115,7 +115,7 @@
                         </div>
                         <div class="vote-count">
                             <span class="votes" data-car-id="{{ $car->id }}">{{ $car->vote_count }}</span>
-                            <span class="vote-label">oy</span>
+                            <span class="vote-label">səs</span>
                         </div>
                         <div class="vote-percentage">
                             <div class="percentage-bar">
@@ -125,14 +125,14 @@
                         </div>
                         <button class="vote-btn" data-car-id="{{ $car->id }}">
                             <span class="vote-icon">❤️</span>
-                            <span class="vote-text">Oy Ver</span>
+                            <span class="vote-text">Səs Ver</span>
                         </button>
                     </div>
                 </div>
                 @empty
                 <div class="no-cars-message">
                     <h3>Hələ heç bir avtomobil təsdiqlənməyib</h3>
-                    <p>Oy verməyə başlamaq üçün avtomobillərin təsdiqlənməsini gözləyin.</p>
+                    <p>Səs verməyə başlamaq üçün avtomobillərin təsdiqlənməsini gözləyin.</p>
                 </div>
                 @endforelse
             </div>
@@ -143,19 +143,19 @@
     <section class="voting-rules">
         <div class="container">
             <div class="rules-container">
-                <h2 class="section-title">Oylama Kuralları</h2>
+                <h2 class="section-title">Səsvermə Qaydaları</h2>
                 <div class="rules-content">
                     <div class="rule-item">
                         <div class="rule-icon">🔐</div>
                         <div class="rule-text">
-                            <h3>Kod İlə Oy Vermə</h3>
+                            <h3>Kod İlə Səs Vermə</h3>
                             <p>Oy vermək üçün xüsusi kod tələb olunur. Hər kod yalnız bir dəfə istifadə edilə bilər.</p>
                         </div>
                     </div>
                     <div class="rule-item">
                         <div class="rule-icon">📅</div>
                         <div class="rule-text">
-                            <h3>Aylıq Oylama</h3>
+                            <h3>Aylıq Səsvermə</h3>
                             <p>Hər ay yeni bir oylama düzənlənir və qaliblər mükafatlandırılır.</p>
                         </div>
                     </div>
