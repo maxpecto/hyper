@@ -67,9 +67,6 @@ class EventResource extends Resource
                         TextInput::make('filter_meet_text')
                             ->label('Görüş Butonu')
                             ->required(),
-                        TextInput::make('filter_workshop_text')
-                            ->label('Emalatxana Butonu')
-                            ->required(),
                         TextInput::make('filter_drift_text')
                             ->label('Drift Butonu')
                             ->required(),

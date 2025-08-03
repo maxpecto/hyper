@@ -50,7 +50,6 @@
                 <button class="filter-btn active" data-filter="all">{{ $settings->filter_all_text }}</button>
                 <button class="filter-btn" data-filter="racing">{{ $settings->filter_racing_text }}</button>
                 <button class="filter-btn" data-filter="meet">{{ $settings->filter_meet_text }}</button>
-                <button class="filter-btn" data-filter="workshop">{{ $settings->filter_workshop_text }}</button>
                 <button class="filter-btn" data-filter="drift">{{ $settings->filter_drift_text }}</button>
             </div>
         </div>
@@ -77,9 +76,6 @@
                                     @break
                                 @case('racing')
                                     {{ $settings->filter_racing_text }}
-                                    @break
-                                @case('workshop')
-                                    {{ $settings->filter_workshop_text }}
                                     @break
                                 @case('drift')
                                     {{ $settings->filter_drift_text }}

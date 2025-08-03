@@ -15,7 +15,6 @@ class Event extends Model
         'filter_all_text',
         'filter_racing_text',
         'filter_meet_text',
-        'filter_workshop_text',
         'filter_drift_text',
         'events',
         'is_active',
@@ -51,7 +50,6 @@ class Event extends Model
             'filter_all_text' => 'Hamısı',
             'filter_racing_text' => 'Yarış',
             'filter_meet_text' => 'Görüş',
-            'filter_workshop_text' => 'Emalatxana',
             'filter_drift_text' => 'Drift',
             'events' => [
                 [

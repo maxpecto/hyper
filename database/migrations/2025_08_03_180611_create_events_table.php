@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('filter_all_text');
             $table->string('filter_racing_text');
             $table->string('filter_meet_text');
-            $table->string('filter_workshop_text');
             $table->string('filter_drift_text');
             $table->json('events');
             $table->boolean('is_active')->default(true);
